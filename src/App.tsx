@@ -18,6 +18,9 @@ const callGemini = async (prompt: string, systemContext: string) => {
 
       // --- SPECIFIC PROJECT INSIGHTS (Clean Text, No Markdown) ---
       if (p.includes("insight")) {
+          // NEW: Commerce Intelligence Systems (UNB RBC Pitch)
+          if (p.includes("commerce") || p.includes("intelligence") || p.includes("pitch")) return "The Challenge: Visualizing complex financial models (DCF, WACC) while maintaining a clean, executive-level UI.\n\nEngineering: I built a responsive, tabbed interface with a live simulated market engine, and integrated a custom Gemini AI trained strictly on my financial thesis to defend the pitch in real-time.\n\nOutcome: A highly interactive, professional-grade dashboard that bridges raw data with institutional storytelling.";
+
           // 1. Mom's Kitchen
           if (p.includes("mom")) return "The Challenge: Translating unstructured, handwritten family recipes into a queryable digital format.\n\nEngineering: I architected a custom data parser to normalize inconsistent measurements into a strict JSON schema. This allowed for advanced filtering and search capabilities that raw text couldn't support.\n\nOutcome: A scalable, type-safe culinary database that preserves heritage with engineering precision.";
           
@@ -62,7 +65,7 @@ const callGemini = async (prompt: string, systemContext: string) => {
       
       if (p.includes("hire")) return "Because I don't just write code; I build relationships. Whether it's analyzing data to save lives or debugging a game level late at night, I bring a 'never give up' attitude and a smile to the team. I care about the people I work with as much as the product we build. Let's win together!";
       
-      if (p.includes("hobbies") || p.includes("fun fact")) return "Fun fact: I'm a total creativity engine! I love coming up with random new ideas—whether it's coding a new prototype, cooking up a storm in the kitchen, optimizing my workout routine, or inventing new soccer moves. I just love creating cool stuff and seeing what happens!";
+      if (p.includes("hobbies")) return "Fun fact: I'm a total creativity engine! I love coming up with random new ideas—whether it's coding a new prototype, cooking up a storm in the kitchen, optimizing my workout routine, or inventing new soccer moves. I just love creating cool stuff and seeing what happens!";
       
       // --- SOCIALLY BENEFICIAL PROJECT IDEAS LIST ---
       if (p.includes("future") || p.includes("idea")) return `Here are 7 ambitious ideas I'd love to build to help the world:\n\n1. Eco-Waste Link. A real-time app connecting local restaurants with surplus food to nearby shelters and food banks to fight hunger.\n2. Guardian Eye. A privacy-first computer vision system for home cameras that detects falls in the elderly and alerts family instantly.\n3. Crisis Mesh. An offline-first messaging app using Bluetooth mesh networks for communities to communicate during disaster power outages.\n4. Skill Bridge. A platform connecting retired professionals with underprivileged youth for mentorship and skill trading.\n5. Neuro-Focus. A gamified, adaptive task manager designed specifically for ADHD brains to turn daily chores into dopamine hits.\n6. Agri-Smart. An affordable IoT dashboard for small-scale farmers to monitor soil moisture and water usage, saving resources.\n7. Access City. A crowdsourced map highlighting wheelchair-accessible routes and venues in my city, updated by the community.`;
@@ -116,11 +119,21 @@ const App = () => {
   const [isInsightLoading, setIsInsightLoading] = useState(false);
 
   // --- IMAGES STRATEGY ---
-  const getThumIo = (url: string) => `https://image.thum.io/get/width/600/crop/800/noanimate/${url}`;
   const getMicrolink = (url: string) => `https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
 
-  // --- REORDERED PROJECTS ARRAY (Prioritizing Mom's Kitchen & AI Sentinel) ---
+  // --- PROJECT DATA ---
   const projects = [
+    {
+      id: 11,
+      title: "Commerce Intelligence Systems",
+      category: "Web App",
+      description: "Built for the UNB & RBC Pitch Competition. A high-fidelity financial dashboard transforming Shopify data into institutional-grade insights, complete with a live market engine and AI defense assistant.",
+      tech: ["Next.js", "Tailwind", "Gemini AI", "Financial Modeling"],
+      repo: "https://github.com/namdok2k3-cmyk/shopify-pitch-dashboard",
+      demo: "https://shopify-pitch-dashboard.vercel.app", // Make sure this matches your Vercel URL!
+      image: getMicrolink("https://shopify-pitch-dashboard.vercel.app"), 
+      featured: true
+    },
     {
       id: 1,
       title: "Mom's Kitchen",
@@ -185,7 +198,7 @@ const App = () => {
       repo: "https://github.com/namdok2k3-cmyk/Chill-Background",
       demo: "https://chill-background.vercel.app",
       image: getMicrolink("https://chill-background.vercel.app"), 
-      featured: true
+      featured: false
     },
     {
       id: 7,
@@ -217,7 +230,7 @@ const App = () => {
       tech: ["React", "Canvas", "Physics", "Particle Effects"],
       repo: "https://github.com/namdok2k3-cmyk/retro-breaker",
       demo: "https://retro-breaker.vercel.app",
-      image: getThumIo("https://retro-breaker.vercel.app"), 
+      image: getMicrolink("https://retro-breaker.vercel.app"), 
       featured: false
     },
     {
@@ -394,9 +407,9 @@ const App = () => {
     if (!ctx) return; 
 
     let animationFrameId: number;
-    // Stars
+    // Stars - Reduced count for performance
     let stars: {x: number, y: number, size: number, phase: number, speed: number}[] = [];
-    // Galaxy Particles
+    // Galaxy Particles - Reduced count for performance
     let galaxy: {angle: number, r: number, size: number, speed: number, color: string}[] = [];
     let shootingStars: {x: number, y: number, length: number, speed: number, angle: number, life: number}[] = [];
     // Floating Meteoroids
@@ -430,7 +443,8 @@ const App = () => {
     };
 
     const initStars = () => {
-      stars = Array.from({ length: 200 }).map(() => ({
+      // Reduced from 200 to 150
+      stars = Array.from({ length: 150 }).map(() => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 2 + 0.5,
@@ -441,7 +455,8 @@ const App = () => {
 
     const initGalaxy = () => {
         galaxy = [];
-        const particleCount = 400;
+        // Reduced from 400 to 250 for massive FPS boost
+        const particleCount = 250;
         for(let i = 0; i < particleCount; i++) {
             galaxy.push({
                 angle: Math.random() * Math.PI * 2,
@@ -499,9 +514,8 @@ const App = () => {
             
             ctx.fillStyle = p.color;
             ctx.globalAlpha = 0.6;
-            ctx.beginPath();
-            ctx.arc(x, y, p.size, 0, Math.PI * 2);
-            ctx.fill();
+            // OPTIMIZATION: Use fillRect instead of arc for particles (much faster)
+            ctx.fillRect(x, y, p.size, p.size);
             ctx.globalAlpha = 1.0;
         });
     };
@@ -700,14 +714,18 @@ const App = () => {
         
         ctx.restore();
 
-        ctx.shadowColor = '#60a5fa';
-        ctx.shadowBlur = 50;
+        // OPTIMIZATION: Removed expensive shadowBlur
+        // Replaced with a simple low-opacity outer circle for glow effect
+        ctx.fillStyle = 'rgba(96, 165, 250, 0.1)';
+        ctx.beginPath();
+        ctx.arc(earthX, earthY, radius * 1.05, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.strokeStyle = 'rgba(96, 165, 250, 0.3)';
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.arc(earthX, earthY, radius, 0, Math.PI * 2);
         ctx.stroke();
-        ctx.shadowBlur = 0;
     };
 
     const drawUFO = (time: number) => {
@@ -807,9 +825,9 @@ const App = () => {
         const blink = Math.sin(time * 0.002 + star.phase);
         const opacity = 0.55 + 0.45 * blink; 
         ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
+        
+        // OPTIMIZATION: Use fillRect instead of arc for stars
+        ctx.fillRect(star.x, star.y, star.size, star.size);
       });
 
       // Shooting Stars - Increased frequency
@@ -1174,7 +1192,7 @@ const App = () => {
 
       <footer className="py-12 border-t border-slate-800 px-6 bg-slate-950 z-10 relative">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-slate-500 text-sm">
-          <p>© 2025 Nhat Nam Do. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nhat Nam Do. All rights reserved.</p>
         </div>
       </footer>
 
