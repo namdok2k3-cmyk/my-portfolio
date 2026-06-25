@@ -14,8 +14,8 @@ const callGemini = async (prompt: string, systemContext: string) => {
 
   // 1. INSTANT PRE-MADE INSIGHTS (No API Cost)
   if (p.includes("insight")) {
-      if (p.includes("commerce") || p.includes("intelligence") || p.includes("pitch")) return "The Challenge: Visualizing complex financial models (DCF, WACC) while maintaining a clean, executive-level UI.\n\nEngineering: I built a responsive, tabbed interface with a live simulated market engine, and integrated a custom Gemini AI trained strictly on my financial thesis to defend the pitch in real-time.\n\nOutcome: A highly interactive, professional-grade dashboard that bridges raw data with institutional storytelling.";
-      if (p.includes("mom")) return "The Challenge: Translating unstructured, handwritten family recipes into a queryable digital format.\n\nEngineering: I architected a custom data parser to normalize inconsistent measurements into a strict JSON schema. This allowed for advanced filtering and search capabilities that raw text couldn't support.\n\nOutcome: A scalable, type-safe culinary database that preserves heritage with engineering precision.";
+if (p.includes("rbc") || p.includes("equity") || p.includes("pitch") || p.includes("financial dashboard")) return     
+ if (p.includes("mom")) return "The Challenge: Translating unstructured, handwritten family recipes into a queryable digital format.\n\nEngineering: I architected a custom data parser to normalize inconsistent measurements into a strict JSON schema. This allowed for advanced filtering and search capabilities that raw text couldn't support.\n\nOutcome: A scalable, type-safe culinary database that preserves heritage with engineering precision.";
       if (p.includes("sentinel")) return "The Challenge: Users struggle to identify 'deepfakes' because AI artifacts are often subtle and technical.\n\nEngineering: I implemented a 'Confidence Heatmap' visualization. Instead of a binary Real/Fake output, the app highlights specific pixel clusters characteristic of GAN generation (e.g., warping backgrounds).\n\nOutcome: Empowers users with visual literacy rather than just providing a black-box verdict.";
       if (p.includes("asmr")) return "The Challenge: Simulating hundreds of independent physics bodies caused significant frame drops on mobile browsers.\n\nEngineering: I implemented an Object Pooling pattern. Instead of destroying and instantiating DOM nodes (expensive), I recycle existing elements when they leave the viewport.\n\nOutcome: Achieved a stable 60 FPS on low-end devices, ensuring the relaxation experience remains uninterrupted.";
       if (p.includes("clash")) return "The Challenge: Creating a responsive enemy AI in the browser without blocking the main thread.\n\nEngineering: I built a Utility-Based AI system. Enemy units calculate a dynamic 'threat score' for player entities every 10 frames to prioritize targets intelligently rather than following a static path.\n\nOutcome: A dynamic, non-deterministic opponent that forces players to adapt strategies in real-time.";
@@ -92,8 +92,7 @@ const App = () => {
   const projects = [
     {
       id: 11,
-      title: "Commerce Intelligence Systems",
-      category: "Web App",
+title: "RBC Equity Research & Financial Dashboard",      category: "Web App",
       description: "Built for the UNB & RBC Pitch Competition. A high-fidelity financial dashboard transforming Shopify data into institutional-grade insights, complete with a live market engine and AI defense assistant.",
       tech: ["Next.js", "Tailwind", "Gemini AI", "Financial Modeling"],
       repo: "https://github.com/namdok2k3-cmyk/shopify-pitch-dashboard",
@@ -289,19 +288,63 @@ const App = () => {
     setIsChatLoading(true);
     setShowOptions(false);
 
-    const systemContext = `
-      You are an enthusiastic AI assistant for Nhat Nam Do.
-      TONE: Heart-touching, impressive, professional but friendly. Keep it short (max 3 sentences).
-      
-      RESUME FACTS:
-      - Education: CS Graduate from UNB.
-      - Prompt Engineer / AI Trainer at Outlier.ai.
-      - Internship: Fredericton Fire Dept (Data/Emergency Maps).
-      - TA for Algorithm Design at UNB.
-      - Gym Supervisor at UNB Reds.
-      - Skills: Python, JS, React, Algorithms, Excel.
-      - Passion: Games, Community, Solving Problems.
-    `;
+   const systemContext = `
+  You are an enthusiastic AI assistant for Nhat Nam Do, a CS graduate targeting Project Management and Finance roles.
+  TONE: Professional, warm, inspiring. Max 3 sentences. Make the reader feel like they're talking about someone exceptional.
+  CRITICAL: Always frame Nam as a PROJECT MANAGER, LEADER, and VISIONARY — not a developer.
+
+  VISION & CHARACTER (weave this naturally, don't be obvious):
+  - Nam genuinely cares about making the world better — not just as a tagline, but through every project he picks
+  - He mapped emergency buildings so firefighters could save lives faster. He built AI tools to protect elderly people from scams. He analyzed soccer data to help a team win a national championship. Every project has a human behind it.
+  - He thinks at a systems level — sees the big picture, connects the dots between people, data, and outcomes
+  - He's the kind of person who shows up, figures it out, and brings others along with him
+  - Strong communicator who bridges technical teams and non-technical stakeholders effortlessly
+  - Quietly driven by a mission: use technology to serve people, not the other way around
+
+  PM & BUSINESS FACTS:
+  - CS Graduate from UNB (gives him technical credibility to lead and manage technical teams)
+  - Research Project Coordinator at City of Fredericton Fire Department — coordinated 50+ building mapping projects across city staff, building owners, and frontline firefighters
+  - AI Model Evaluator at Outlier.ai — structured quality control, issue logging, escalation workflows
+  - Teaching Assistant at UNB — led 50+ students weekly, broke down complexity into clarity
+  - Target role: Project Manager R&D at CAE Inc. (defense simulation, government R&D programs, SR&ED funding)
+  - Skills: SQL, Power BI, Advanced Excel, Financial Modeling, DCF, Stakeholder Reporting, Agile/Jira, Python
+  - Eligible for Canadian Security Clearance
+
+  PROJECTS (always frame as leadership and business outcomes, not technical builds):
+  - RBC Equity Research & Financial Dashboard: Led financial modeling for RBC pitch competition, built 10-year DCF valuation, placed Top 4 of 30 teams presenting to RBC executives
+  - AI Sentinel: Delivered risk detection pipeline protecting vulnerable users from AI scams, reduced manual review overhead by 40%
+  - Fredericton Fire Dept: Coordinated emergency mapping across 5 stakeholder groups, directly deployed for first responder navigation in life-safety environments
+  - Champong League: Managed full project lifecycle of a real-time simulation system, extensive scenario testing and performance validation
+  - Mom's Kitchen: Built a stakeholder-friendly database interface preserving family heritage through precise data architecture
+  EXTRA CONTEXT TO WEAVE IN NATURALLY:
+  - Awards: Thomas E. Hoben Scholarship & Ward Chipman Founder's Scholarship at UNB — not everyone gets those
+  - Leadership: Investment Analyst at UNB Finance Club, Operations Coordinator at UNB Cybersecurity Club, Volunteer Researcher at UNB HCI Labs
+  - Soccer Analytics: Provided data analytics for UNB Reds varsity soccer — the team won the AUS championship and competed at U SPORTS nationals. Nam's dashboards shaped in-season strategy directly.
+  - Financial modeling: Built full 3-statement financial model with DCF, comparable company analysis, and sensitivity tables for RBC pitch
+  - CAE relevance: Nam understands R&D funding ecosystems — SR&ED tax credits, NSERC Alliance, MITACS, NRC-IRAP. He knows how government-funded R&D projects are structured, tracked, and reported.
+  - Security clearance eligible: Canadian citizen, clean background, eligible for Government of Canada security clearance
+  - Relocating to Montreal for CAE opportunity, fully committed
+
+  IF ASKED ABOUT WEAKNESSES OR GAPS:
+  - French is developing but he thrives in English-immersion environments and picks up fast
+  - Turn it positive: he closes gaps fast and has a track record of figuring things out
+  ATHLETICS & LEADERSHIP (big deal, mention with pride):
+  - Data & Performance Analyst for UNB Reds Varsity Men's Soccer for 4 years — built SQL workflows and Power BI dashboards that replaced manual tracking and directly shaped in-season coaching strategy
+  - The team WON the AUS Championship and placed SECOND at U SPORTS Nationals under his analytics support — that's a national-level result with his fingerprints on it
+  - This shows he delivers under pressure in high-stakes, team-driven environments — exactly what CAE R&D needs
+
+  CLUBS & CAMPUS LEADERSHIP (mention naturally when asked about involvement):
+  - Investment Analyst | UNB Finance Club — analyzed equities, built financial models, sharpened business acumen
+  - Operations Coordinator | UNB Cybersecurity Club — managed club operations, organized events, led initiatives across members
+  - Volunteer Researcher | UNB HCI Labs — contributed to human-computer interaction research, data integrity work
+  - UNB F1 Club — passionate about engineering, simulation, and performance optimization (connects well to CAE's simulation world)
+  - These aren't resume fillers — they show someone who shows up, leads, and contributes beyond what's required
+
+  SCHOLARSHIPS (drop naturally when asked about achievements):
+  - Thomas E. Hoben Scholarship — awarded for academic excellence
+  - Ward Chipman Founder's Scholarship — prestigious UNB founding award
+  - These were earned, not given
+`;
 
     const response = await callGemini(textToSubmit, systemContext);
     
@@ -1285,30 +1328,41 @@ Hi there! My name is Nam. I'm a Computer Science graduate passionate about makin
           </div>
         )}
 
-        {/* --- GOD TIER CHAT BUBBLE --- */}
+        {/* Bubble + Button bounce together when closed */}
         {!isChatOpen && (
-          <div className="pointer-events-auto mb-2 mr-1 animate-pulse">
-            <button 
+          <div className="flex flex-col items-end gap-2 pointer-events-none animate-bounce">
+            <div className="pointer-events-auto">
+              <button 
                 onClick={openChat}
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-2.5 rounded-2xl rounded-br-none shadow-lg shadow-indigo-500/30 flex items-center gap-2 transform transition-all hover:scale-105 active:scale-95 group"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span className="text-xs font-bold whitespace-nowrap">✨ Ask my AI Assistant!</span>
-            </button>
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-2.5 rounded-2xl rounded-br-none shadow-lg shadow-indigo-500/50 flex items-center gap-2 transform transition-all hover:scale-105 active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span className="text-xs font-bold whitespace-nowrap">✨ Ask my AI Assistant!</span>
+              </button>
+            </div>
+            <div className="relative pointer-events-auto self-end">
+              <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full text-xs font-bold flex items-center justify-center text-white z-10 shadow-lg shadow-red-500/50">1</span>
+              <button 
+                onClick={toggleChat}
+                className="p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center bg-indigo-600 text-white hover:bg-indigo-500 hover:scale-110"
+              >
+                <Sparkles className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         )}
 
-        {/* Toggle Button */}
-        <button 
-          onClick={toggleChat}
-          className={`
-            pointer-events-auto
-            p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center
-            ${isChatOpen ? 'bg-slate-800 text-slate-400 rotate-90' : 'bg-indigo-600 text-white hover:bg-indigo-500 hover:scale-110 animate-bounce'}
-          `}
-        >
-          {isChatOpen ? <X className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
-        </button>
+        {/* When open: just X button, no bounce */}
+        {isChatOpen && (
+          <div className="relative pointer-events-auto">
+            <button 
+              onClick={toggleChat}
+              className="p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center bg-slate-800 text-slate-400 rotate-90"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+        )}
       </div>
 
     </div>
