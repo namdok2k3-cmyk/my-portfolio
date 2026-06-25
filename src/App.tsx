@@ -844,8 +844,7 @@ const App = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+<div className="w-full px-10 h-16 flex items-center justify-between">          <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">N</div>
             <div className="flex flex-col">
               <span className="text-lg font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent leading-none flex items-center gap-2">
@@ -858,6 +857,14 @@ const App = () => {
           </div>
 
           <div className="flex gap-6 text-sm font-medium text-slate-400 items-center">
+              <a 
+    href="/resumegod.pdf" 
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-2 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg transition-all"
+  >
+    📄 Resume
+  </a>
             <a href="#projects" className="hover:text-white transition-colors flex items-center gap-1"><Code className="w-4 h-4"/> Projects</a>
             
             <div className="relative">
@@ -1058,7 +1065,7 @@ Hi there! My name is Nam. I'm a Computer Science graduate passionate about makin
                             : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'}
                         `}
                       >
-                        {project.demo === '#' ? 'Coming Soon' : 'Play Now'} 
+                        {project.demo === '#' ? 'Coming Soon' : 'View Project'} 
                         {project.demo !== '#' && <ExternalLink className="w-4 h-4" />}
                       </a>
                     </div>
