@@ -927,12 +927,10 @@ const App = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight animate-reveal" style={{ animationDelay: '0.2s' }}>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Architecting</span> Digital Worlds & Intelligent Systems.
-            </h1>
+<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Delivering</span> a World Worth Building, One Goal Worth Fulfilling.            </h1>
             
             <p className="text-xl md:text-2xl font-medium leading-relaxed mb-10 max-w-2xl mx-auto md:mx-0 animate-blur-in glass-text" style={{ animationDelay: '0.4s' }}>
-              Hi there! My name is Nam. I'm a Computer Science graduate passionate about game logic and interactive web development. I love learning new things to build something meaningful. I hope you have fun exploring my projects—have a wonderful day!
-            </p>
+Hi there! My name is Nam. I'm a Computer Science graduate passionate about making the world a better place every day. I love learning new things to build something meaningful. I hope you have fun exploring my projects and have a wonderful day!            </p>
             
             <div className="flex flex-wrap gap-4 justify-center md:justify-start animate-reveal" style={{ animationDelay: '0.7s' }}>
               <a href="#projects" className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/25 flex items-center gap-2 transform hover:-translate-y-1">
